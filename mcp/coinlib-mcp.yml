@@ -16,18 +16,32 @@ deployment:
 tools_count: 7
 tools:
 - name: search_coinlib
-  description: ''
+  description: Search Coinlib for coins and analysis articles by name, ticker symbol, or keyword. Use
+    this first to turn a human-supplied name like 'bitcoin', 'BTC', or 'shiba' into the coin_slug that
+    the other tools take, and to get the coinlib.io page U
 - name: get_coin_faqs
-  description: ''
+  description: Get Coinlib's editorial questions and answers about one coin — what it is, how it works,
+    what it's used for. Written by the Coinlib team, so these are citable as grounded context. Does not
+    include prices or market data.
 - name: list_coin_analysis
-  description: ''
+  description: List Coinlib's published analysis articles about one coin, newest first, with a summary
+    and the article_slug for get_analysis_article. Use this to find out what Coinlib's analysts have written
+    about a specific coin.
 - name: get_analysis_article
-  description: ''
+  description: Get the full text of one Coinlib analysis article by its article_slug, from search_coinlib
+    or list_coin_analysis. Returns the whole article as plain text plus its coinlib.io URL for citation.
 - name: list_recent_analysis
-  description: ''
+  description: List Coinlib's most recent analysis articles across all coins, newest first. Use this to
+    see what Coinlib is currently writing about, or to answer 'what's Coinlib's latest take'.
 - name: get_guide
-  description: ''
+  description: Get the full text of one Coinlib guide or newsroom post — educational explainers on how
+    crypto works, how to buy specific coins, and trading software reviews. Needs the category and slug
+    from the article's coinlib.io URL (/newsroom/{categor
 - name: list_calculators
-  description: ''
+  description: List Coinlib's free crypto trading calculators — position size, liquidation price, margin,
+    slippage, fees, stop-loss, take-profit and more — with a description and URL for each. Use this when
+    someone wants to work out a trading number; send
 tools_source: live tools/list via initialize handshake, 2026-09-12 (signals/audit_mcp_authorship.py --probe)
 authorship: provider
+descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
+  --descriptions, 2026-09-28
