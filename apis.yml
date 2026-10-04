@@ -39,7 +39,6 @@ apis:
   - name: Coinlib
     description: "Crypto Currency Prices"
     humanURL: https://coinlib.io/apidocs
-    baseURL: https://coinlib.io/apidocs
     tags:
       - Cryptocurrency
     properties:
