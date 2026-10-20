@@ -18,7 +18,8 @@ tools:
 - name: search_coinlib
   description: Search Coinlib for coins and analysis articles by name, ticker symbol, or keyword. Use
     this first to turn a human-supplied name like 'bitcoin', 'BTC', or 'shiba' into the coin_slug that
-    the other tools take, and to get the coinlib.io page U
+    the other tools take, and to get the coinlib.io page URL to cite. Returns names, symbols, slugs, and
+    URLs — not prices or market figures.
 - name: get_coin_faqs
   description: Get Coinlib's editorial questions and answers about one coin — what it is, how it works,
     what it's used for. Written by the Coinlib team, so these are citable as grounded context. Does not
@@ -36,11 +37,11 @@ tools:
 - name: get_guide
   description: Get the full text of one Coinlib guide or newsroom post — educational explainers on how
     crypto works, how to buy specific coins, and trading software reviews. Needs the category and slug
-    from the article's coinlib.io URL (/newsroom/{categor
+    from the article's coinlib.io URL (/newsroom/{category}/{slug}).
 - name: list_calculators
   description: List Coinlib's free crypto trading calculators — position size, liquidation price, margin,
     slippage, fees, stop-loss, take-profit and more — with a description and URL for each. Use this when
-    someone wants to work out a trading number; send
+    someone wants to work out a trading number; send them to the calculator rather than doing it by hand.
 tools_source: live tools/list via initialize handshake, 2026-09-12 (signals/audit_mcp_authorship.py --probe)
 authorship: provider
 descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
