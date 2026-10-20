@@ -1,0 +1,183 @@
+{
+  "endpoint": "https://mcp.coinlib.io/mcp",
+  "captured": "2026-10-20",
+  "method": "initialize + tools/list (anonymous, no tool called; roadmap#992)",
+  "protocol_version": "2025-06-18",
+  "server_info": {
+    "name": "coinlib",
+    "version": "1.0.0"
+  },
+  "result": {
+    "tools": [
+      {
+        "name": "search_coinlib",
+        "title": "Search Coinlib",
+        "description": "Search Coinlib for coins and analysis articles by name, ticker symbol, or keyword. Use this first to turn a human-supplied name like 'bitcoin', 'BTC', or 'shiba' into the coin_slug that the other tools take, and to get the coinlib.io page URL to cite. Returns names, symbols, slugs, and URLs — not prices or market figures.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 100,
+              "description": "Coin name, ticker symbol, or article keyword."
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": true
+        }
+      },
+      {
+        "name": "get_coin_faqs",
+        "title": "Get coin FAQs",
+        "description": "Get Coinlib's editorial questions and answers about one coin — what it is, how it works, what it's used for. Written by the Coinlib team, so these are citable as grounded context. Does not include prices or market data.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "coin_slug": {
+              "type": "string",
+              "description": "Lowercase coin slug, e.g. 'bitcoin' or 'shiba-inu'. Get it from search_coinlib."
+            }
+          },
+          "required": [
+            "coin_slug"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": true
+        }
+      },
+      {
+        "name": "list_coin_analysis",
+        "title": "List analysis for a coin",
+        "description": "List Coinlib's published analysis articles about one coin, newest first, with a summary and the article_slug for get_analysis_article. Use this to find out what Coinlib's analysts have written about a specific coin.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "coin_slug": {
+              "type": "string",
+              "description": "Lowercase coin slug, e.g. 'ethereum'. Get it from search_coinlib."
+            },
+            "limit": {
+              "description": "Articles per page, newest first. Default 10, max 100.",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "offset": {
+              "description": "Articles to skip, for paging through a coin's archive. Default 0.",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "coin_slug"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": true
+        }
+      },
+      {
+        "name": "get_analysis_article",
+        "title": "Get an analysis article",
+        "description": "Get the full text of one Coinlib analysis article by its article_slug, from search_coinlib or list_coin_analysis. Returns the whole article as plain text plus its coinlib.io URL for citation.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "article_slug": {
+              "type": "string",
+              "description": "The article's slug, e.g. 'is-bitcoin-still-a-hedge'."
+            }
+          },
+          "required": [
+            "article_slug"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": true
+        }
+      },
+      {
+        "name": "list_recent_analysis",
+        "title": "List recent analysis",
+        "description": "List Coinlib's most recent analysis articles across all coins, newest first. Use this to see what Coinlib is currently writing about, or to answer 'what's Coinlib's latest take'.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "limit": {
+              "default": 10,
+              "description": "How many articles to return (1-25).",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 25
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": true
+        }
+      },
+      {
+        "name": "get_guide",
+        "title": "Get a Coinlib guide",
+        "description": "Get the full text of one Coinlib guide or newsroom post — educational explainers on how crypto works, how to buy specific coins, and trading software reviews. Needs the category and slug from the article's coinlib.io URL (/newsroom/{category}/{slug}).",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "category": {
+              "type": "string",
+              "enum": [
+                "guides",
+                "technology",
+                "trading-software"
+              ],
+              "description": "Which section the post is in."
+            },
+            "slug": {
+              "type": "string",
+              "description": "The post's slug from its URL."
+            }
+          },
+          "required": [
+            "category",
+            "slug"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": true
+        }
+      },
+      {
+        "name": "list_calculators",
+        "title": "List Coinlib calculators",
+        "description": "List Coinlib's free crypto trading calculators — position size, liquidation price, margin, slippage, fees, stop-loss, take-profit and more — with a description and URL for each. Use this when someone wants to work out a trading number; send them to the calculator rather than doing it by hand.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {}
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": true
+        }
+      }
+    ]
+  }
+}
